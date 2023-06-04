@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:todo_app/constants/app_style.dart';
+import 'package:todo_app/widgets/textfield_widget.dart';
 
 class AddNewTaskModal extends StatelessWidget {
   const AddNewTaskModal({
@@ -14,29 +17,28 @@ class AddNewTaskModal extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            width: double.infinity,
-            child: Text(
-              'New Task Todo',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const SizedBox(
+          width: double.infinity,
+          child: Text(
+            'New Task Todo',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
-          Divider(
-            thickness: 1.2,
-            color: Colors.grey.shade200,
-          ),
-          const Text('Title task', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),),
-          const TextField(),
-        ],
-      ),
+        ),
+        Divider(
+          thickness: 1.2,
+          color: Colors.grey.shade200,
+        ),
+        const Gap(12),
+        const Text('Title task', style: AppStyle.headingStyle),
+        const Gap(6),
+        const TextFieldWidget()
+      ]),
     );
   }
 }
