@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget({
     super.key,
+    required this.maxLine,
+    required this.hintText,
   });
+
+  final String hintText;
+  final int maxLine;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,11 +17,12 @@ class TextFieldWidget extends StatelessWidget {
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        decoration: const InputDecoration(
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             hintText: 'Add task name'),
+        maxLines: maxLine,
       ),
     );
   }
