@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/constants/app_style.dart';
@@ -45,9 +46,9 @@ class AddNewTaskModal extends StatelessWidget {
           'Description',
           style: AppStyle.headingStyle,
         ),
-        const Gap(6),
+        const Gap(22),
         const TextFieldWidget(maxLine: 3, hintText: 'Add Descriptions'),
-        const Gap(6),
+        const Gap(22),
         const Text('Category', style: AppStyle.headingStyle),
         Row(
           children: [
@@ -71,9 +72,57 @@ class AddNewTaskModal extends StatelessWidget {
             )
           ],
         ),
+        const Gap(22),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [DateTimeWidget(), Gap(22), DateTimeWidget()],
+          children: const [
+            DateTimeWidget(
+              titleText: 'Date',
+              valueText: 'dd/mm/yy',
+              iconSection: CupertinoIcons.calendar,
+            ),
+            Gap(22),
+            DateTimeWidget(
+              titleText: 'Time',
+              valueText: 'hh : mn',
+              iconSection: CupertinoIcons.clock,
+            ),
+          ],
+        ),
+        const Gap(12),
+        Row(
+          children: [
+            Expanded(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.blue.shade800,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: BorderSide(color: Colors.blue.shade800),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 14)),
+                onPressed: () {},
+                child: const Text('Cancel'),
+              ),
+            ),
+            const Gap(22),
+            Expanded(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade800,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 14)),
+                onPressed: () {},
+                child: const Text('Create'),
+              ),
+            ),
+          ],
         )
       ]),
     );

@@ -1,14 +1,20 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:todo_app/constants/app_style.dart';
 import 'package:gap/gap.dart';
 
 class DateTimeWidget extends StatelessWidget {
   const DateTimeWidget({
     super.key,
+    required this.titleText,
+    required this.valueText,
+    required this.iconSection,
   });
+
+  final String titleText;
+  final String valueText;
+  final IconData iconSection;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +22,8 @@ class DateTimeWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Date',
+          Text(
+            (titleText),
             style: AppStyle.headingStyle,
           ),
           const Gap(6),
@@ -29,11 +35,8 @@ class DateTimeWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(8)),
-            child: Row(children: const [
-              Icon(CupertinoIcons.calendar),
-              Gap(12),
-              Text('dd/mn/yy')
-            ]),
+            child: Row(
+                children: [Icon(iconSection), const Gap(12), Text(valueText)]),
           ),
         ],
       ),
