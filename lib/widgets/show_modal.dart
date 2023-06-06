@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:todo_app/constants/app_style.dart';
+import 'package:todo_app/provider/radio_provider.dart';
 import 'package:todo_app/widgets/date_time_wdiget.dart';
 import 'package:todo_app/widgets/radio_widget.dart';
 import 'package:todo_app/widgets/textfield_widget.dart';
 
-class AddNewTaskModal extends StatelessWidget {
+class AddNewTaskModal extends ConsumerWidget {
   const AddNewTaskModal({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       padding: const EdgeInsets.all(30),
       height: MediaQuery.of(context).size.height * 0.80,
@@ -56,18 +58,27 @@ class AddNewTaskModal extends StatelessWidget {
               child: RadioWidget(
                 categColor: Colors.green.shade400,
                 titleRadio: 'Learn',
+                valueInput: 1,
+                onChangeValue: () =>
+                    ref.read(radioProvider.notifier).update((state) => 1),
               ),
             ),
             Expanded(
               child: RadioWidget(
                 categColor: Colors.blue.shade400,
                 titleRadio: 'Work',
+                valueInput: 2,
+                onChangeValue: () =>
+                    ref.read(radioProvider.notifier).update((state) => 2),
               ),
             ),
             Expanded(
               child: RadioWidget(
                 categColor: Colors.amberAccent.shade400,
                 titleRadio: 'Review',
+                valueInput: 3,
+                onChangeValue: () =>
+                    ref.read(radioProvider.notifier).update((state) => 3),
               ),
             )
           ],
@@ -89,7 +100,7 @@ class AddNewTaskModal extends StatelessWidget {
             ),
           ],
         ),
-        const Gap(12),
+        const Gap(22),
         Row(
           children: [
             Expanded(

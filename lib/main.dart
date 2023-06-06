@@ -2,15 +2,18 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'widgets/show_modal.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Flutter Project Template',
-    theme: ThemeData(),
-    home: const HomePage(),
+  runApp(ProviderScope(
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Project Template',
+      theme: ThemeData(),
+      home: const HomePage(),
+    ),
   ));
 }
 
