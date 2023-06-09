@@ -46,7 +46,7 @@ class CardListWidget extends StatelessWidget {
                     ),
                   ),
                   Transform.translate(
-                    offset: const Offset(0, 12),
+                    offset: const Offset(0, 3),
                     child: Column(
                       children: [
                         Divider(
