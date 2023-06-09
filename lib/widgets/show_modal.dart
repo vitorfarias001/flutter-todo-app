@@ -141,7 +141,7 @@ class AddNewTaskModal extends ConsumerWidget {
                       side: BorderSide(color: Colors.blue.shade800),
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 14)),
-                onPressed: () {},
+                onPressed: () => Navigator.pop(context),
                 child: const Text('Cancel'),
               ),
             ),

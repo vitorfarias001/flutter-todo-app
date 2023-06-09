@@ -1,9 +1,10 @@
-// ignore_for_file: unnecessary_const, unnecessary_import
+// ignore_for_file: unnecessary_const, unnecessary_import, avoid_print
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:todo_app/widgets/card_list_widget.dart';
 import 'widgets/show_modal.dart';
 
 void main() {
@@ -59,49 +60,53 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children: [
-              const Gap(20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Today\'s Task',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
-                      ),
-                      Text(
-                        'Wednesday, 11 May',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFD5E8FA),
-                        foregroundColor: Colors.blue.shade800,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6))),
-                    onPressed: () => showModalBottomSheet(
-                        isScrollControlled: true,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        context: context,
-                        builder: (context) => const AddNewTaskModal()),
-                    child: const Text(
-                      '+ New Task',
+          child: Column(children: [
+            const Gap(20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Today\'s Task',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
-                  )
-                ],
-              )
-            ],
-          ),
+                    Text(
+                      'Wednesday, 11 May',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFD5E8FA),
+                      foregroundColor: Colors.blue.shade800,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6))),
+                  onPressed: () => showModalBottomSheet(
+                      isScrollControlled: true,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                      context: context,
+                      builder: (context) => const AddNewTaskModal()),
+                  child: const Text(
+                    '+ New Task',
+                  ),
+                ),
+              ],
+            ),
+            const Gap(22),
+            ListView.builder(
+              itemCount: 1,
+              shrinkWrap: true,
+              itemBuilder: (context, index) => const CardListWidget(),
+            ),
+          ]),
         ),
       ),
     );
