@@ -11,16 +11,19 @@ import 'package:todo_app/widgets/radio_widget.dart';
 import 'package:todo_app/widgets/textfield_widget.dart';
 
 class AddNewTaskModal extends ConsumerWidget {
-  const AddNewTaskModal({
+  AddNewTaskModal({
     Key? key,
   }) : super(key: key);
+
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dateProv = ref.watch(dateProvider);
     return Container(
       padding: const EdgeInsets.all(30),
-      height: MediaQuery.of(context).size.height * 0.80,
+      height: MediaQuery.of(context).size.height * 0.95,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -45,14 +48,21 @@ class AddNewTaskModal extends ConsumerWidget {
         const Gap(12),
         const Text('Title task', style: AppStyle.headingStyle),
         const Gap(6),
-        const TextFieldWidget(maxLine: 1, hintText: 'Add task name'),
+        TextFieldWidget(
+          maxLine: 1,
+          hintText: 'Add task name',
+          txtController: titleController,
+        ),
         const Gap(12),
         const Text(
           'Description',
           style: AppStyle.headingStyle,
         ),
         const Gap(22),
-        const TextFieldWidget(maxLine: 3, hintText: 'Add Descriptions'),
+        TextFieldWidget(
+            maxLine: 3,
+            hintText: 'Add Descriptions',
+            txtController: descriptionController),
         const Gap(22),
         const Text('Category', style: AppStyle.headingStyle),
         Row(
@@ -86,7 +96,6 @@ class AddNewTaskModal extends ConsumerWidget {
             )
           ],
         ),
-        const Gap(22),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -108,7 +117,6 @@ class AddNewTaskModal extends ConsumerWidget {
                 }
               },
             ),
-            const Gap(22),
             DateTimeWidget(
               titleText: 'Time',
               valueText: ref.watch(timeProvider),
@@ -156,7 +164,9 @@ class AddNewTaskModal extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 14)),
-                onPressed: () {},
+                onPressed: () {
+                  
+                },
                 child: const Text('Create'),
               ),
             ),
