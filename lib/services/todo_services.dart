@@ -8,4 +8,17 @@ class TodoService {
   void addNewTask(TodoModel model) {
     todoCollection.add(model.toMap());
   }
+
+  //UPDATE
+  void updateTask(String? docId, bool? valueUpdate) {
+    todoCollection.doc(docId).update({
+      'isDone': valueUpdate,
+    });
+  }
+
+  //DELETE
+
+  void deleteTask(String? docId) {
+    todoCollection.doc(docId).delete();
+  }
 }

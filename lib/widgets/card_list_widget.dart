@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -59,15 +60,36 @@ class CardListWidget extends ConsumerWidget {
                     children: [
                       ListTile(
                         contentPadding: EdgeInsets.zero,
-                        title: Text(todoData[getIndex].titleTask),
-                        subtitle: Text((todoData[getIndex].description)),
+                        leading: IconButton(
+                            icon: const Icon(CupertinoIcons.delete),
+                            onPressed: () => ref
+                                .read(serviceProvider)
+                                .deleteTask(todoData[getIndex].docId)),
+                        title: Text(
+                          todoData[getIndex].titleTask,
+                          maxLines: 1,
+                          style: TextStyle(
+                              decoration: todoData[getIndex].isDone
+                                  ? TextDecoration.lineThrough
+                                  : null),
+                        ),
+                        subtitle: Text(
+                          todoData[getIndex].description,
+                          maxLines: 1,
+                          style: TextStyle(
+                              decoration: todoData[getIndex].isDone
+                                  ? TextDecoration.lineThrough
+                                  : null),
+                        ),
                         trailing: Transform.scale(
                           scale: 1.5,
                           child: Checkbox(
                               activeColor: Colors.blue.shade800,
                               shape: const CircleBorder(),
                               value: todoData[getIndex].isDone,
-                              onChanged: (value) => print(value)),
+                              onChanged: (value) => ref
+                                  .read(serviceProvider)
+                                  .updateTask(todoData[getIndex].docId, value)),
                         ),
                       ),
                       Transform.translate(
