@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo_app/model/todo_interface.dart';
 
-class TodoServices {
+class TodoService {
   final todoCollection = FirebaseFirestore.instance.collection('todoApp');
 
   //CREATE

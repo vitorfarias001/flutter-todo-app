@@ -1,11 +1,15 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/constants/app_style.dart';
+import 'package:todo_app/model/todo_interface.dart';
 import 'package:todo_app/provider/date_time_provider.dart';
 import 'package:todo_app/provider/radio_provider.dart';
+import 'package:todo_app/provider/services_provider.dart';
 import 'package:todo_app/widgets/date_time_wdiget.dart';
 import 'package:todo_app/widgets/radio_widget.dart';
 import 'package:todo_app/widgets/textfield_widget.dart';
@@ -165,7 +169,34 @@ class AddNewTaskModal extends ConsumerWidget {
                     ),
                     padding: const EdgeInsets.symmetric(vertical: 14)),
                 onPressed: () {
-                  
+                  final getRadioValue = ref.read(radioProvider);
+                  String category = '';
+
+                  switch (getRadioValue) {
+                    case 1:
+                      category = 'Learning';
+                      break;
+                    case 2:
+                      category = 'Working';
+                      break;
+                    case 3:
+                      category = 'Review';
+                      break;
+                  }
+
+                  ref.read(serviceProvider).addNewTask(TodoModel(
+                      titleTask: titleController.text,
+                      description: descriptionController.text,
+                      category: category,
+                      dateTask: ref.read(dateProvider),
+                      timeTask: ref.read(timeProvider),
+                      isDone: false));
+                  print('Field is create');
+
+                  titleController.clear();
+                  descriptionController.clear();
+                  ref.read(radioProvider.notifier).update((state) => 0);
+                  Navigator.pop(context);
                 },
                 child: const Text('Create'),
               ),
